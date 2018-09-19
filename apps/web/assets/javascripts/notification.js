@@ -68,7 +68,7 @@ App.notification = (function() {
   }
 
   function onReceive(data) {
-    getActuatorStatus().text(data.message);
+    getNotificationStatus().text(data.message);
     appendMessageToBox(data);
   }
 
@@ -126,11 +126,11 @@ App.notification = (function() {
     return document.getElementById(config.container);
   }
 
-  function setActuatorStatus() {
-    getActuatorStatus().text(incomingMessage.message);
+  function setNotificationStatus() {
+    getNotificationStatus().text(incomingMessage.message);
   }
 
-  function getActuatorStatus() {
+  function getNotificationStatus() {
     return $(config.statusIndicator);
   }
 
