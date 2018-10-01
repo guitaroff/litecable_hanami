@@ -1,3 +1,19 @@
-<h1>Home index</h1>
+<h1>Home#index</h1>
 
-<%= javascript 'notification' %>
+<div class="messages" id='message_list'></div>
+
+<div class="message-form">
+  <form id='message_form'>
+    <div class="row">
+      <input id='message_txt' type="text" required="required">
+    </div>
+
+    <div class="row">
+      <button class="btn" type="submit">
+        <span>Send!</span>
+      </button>
+    </div>
+  </form>
+</div>
+
+<%= javascript 'chat' %>
