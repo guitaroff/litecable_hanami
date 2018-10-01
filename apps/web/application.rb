@@ -2,7 +2,7 @@ require 'hanami/helpers'
 require 'hanami/assets'
 require_relative './connection'
 require_relative './channel'
-require_relative './notification'
+require_relative './chat'
 
 CABLE_URL = ENV['ANYCABLE'] ? 'ws://localhost:9293/cable' : '/cable'
 

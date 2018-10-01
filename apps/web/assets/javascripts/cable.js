@@ -1,6 +1,6 @@
 (function() {
   var slice = [].slice;
-  alert('cable.js');
+  //alert('cable.js');
 
   this.ActionCable = {
     INTERNAL: {
