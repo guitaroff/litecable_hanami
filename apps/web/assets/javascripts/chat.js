@@ -44,7 +44,7 @@ var chatChannel = cable.subscriptions.create(
     },
 
     disconnected: function(){
-      console.log("Connected");
+      console.log("Disconnected");
       addMessage({ user: 'BOT', message: "Sorry, but you've been disconnected(", system: true });
     },
 
