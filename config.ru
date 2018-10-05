@@ -1,26 +1,23 @@
 require './config/environment'
 
-run Hanami.app
+LiteCable.config.log_level = Logger::DEBUG
 
-# LiteCable.config.log_level = Logger::DEBUG
+app = Rack::Builder.new do
+  map '/' do
+    run Hanami.app
+  end
+end
 
-# app = Rack::Builder.new do
-#   map '/' do
-#     run Hanami.app
-#   end
-# end
+if ENV['ANYCABLE']
+  # Turn AnyCable compatibility mode
+  LiteCable.anycable!
+else
+  require 'lite_cable/server'
 
-# if ENV['ANYCABLE']
-#   # Turn AnyCable compatibility mode
-#   LiteCable.anycable!
-# else
-#   #require './chat'
-#   require 'lite_cable/server'
+  app.map '/cable' do
+    use LiteCable::Server::Middleware, connection_class: Web::Connection
+    run proc { |_| [200, { 'Content-Type' => 'text/plain' }, ['OK']] }
+  end
+end
 
-#   app.map '/cable' do
-#     use LiteCable::Server::Middleware, connection_class: Web::Connection
-#     run proc { |_| [200, { 'Content-Type' => 'text/plain' }, ['OK']] }
-#   end
-# end
-
-# run app
+run app
